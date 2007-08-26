@@ -1,5 +1,5 @@
 %define name coin
-%define version 2.4.5
+%define version 2.4.6
 %define release %mkrel 1
 
 %define major   40
@@ -11,7 +11,7 @@ Summary: Coin is an implementation of the Open Inventor API
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Source0: http://ftp.coin3d.org/coin/src/all/Coin-%{version}.tar.bz2
+Source0: http://ftp.coin3d.org/coin/src/all/Coin-%{version}.tar.gz
 License: GPL
 Group: System/Libraries
 BuildRoot: %{_tmppath}/%{name}-buildroot
