@@ -14,6 +14,7 @@ Release: %{release}
 Source0: http://ftp.coin3d.org/coin/src/all/Coin-%{version}.tar.gz
 License: GPL
 Group: System/Libraries
+BuildRoot: %{_tmppath}/%{name}-buildroot
 URL: http://www.coin3d.org/
 
 BuildRequires: X11-devel
