@@ -7,7 +7,7 @@
 %define libnamedev %mklibname %name %major -d
 %define lib_name_orig libcoin
 
-Summary: Coin is an implementation of the Open Inventor API
+Summary: Implementation of the Open Inventor API
 Name: %{name}
 Version: %{version}
 Release: %{release}
