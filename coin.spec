@@ -1,6 +1,6 @@
 %define name coin
 %define version 2.4.6
-%define release %mkrel 2
+%define release %mkrel 4
 
 %define major   40
 %define libname %mklibname %name %major
