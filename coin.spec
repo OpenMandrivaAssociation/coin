@@ -1,10 +1,10 @@
 %define name coin
 %define version 2.4.6
-%define release %mkrel 6
+%define release %mkrel 7
 
 %define major   40
 %define libname %mklibname %name %major
-%define libnamedev %mklibname %name %major -d
+%define libnamedev %mklibname %name -d
 %define lib_name_orig libcoin
 
 Summary: Implementation of the Open Inventor API
@@ -16,8 +16,8 @@ License: GPL
 Group: System/Libraries
 BuildRoot: %{_tmppath}/%{name}-buildroot
 URL: http://www.coin3d.org/
-
-BuildRequires: X11-devel
+BuildRequires: libx11-devel
+BuildRequires: mesagl-devel
 
 %description 
 Coin is an implementation of the Open Inventor API, fully backwards
@@ -42,29 +42,22 @@ Group: Development/C++
 Requires: %{libname} = %{version}
 Provides: %{lib_name_orig}-devel = %{version}-%{release}
 Provides: %{name}-devel = %{version}-%{release}
+Obsoletes: %{_lib}coin40-devel
 
 %description -n %{libnamedev}
 This package contains the headers that programmers will need to develop
 applications which will use Coin.
 
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
 %prep
 %setup -q -n Coin-%{version}
 
 %build
-
-./configure --prefix=%_prefix --mandir=%_mandir --datadir=%_datadir --libdir=%_libdir
-
+%configure2_5x
 %make
 
 %install
-%makeinstall
+rm -rf $RPM_BUILD_ROOT
+%makeinstall_std
 
 %clean
 rm -rf $RPM_BUILD_ROOT
