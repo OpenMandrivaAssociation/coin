@@ -1,8 +1,8 @@
 %define name coin
-%define version 2.4.6
-%define release %mkrel 7
+%define version 3.1.3
+%define release %mkrel 1
 
-%define major   40
+%define major   60
 %define libname %mklibname %name %major
 %define libnamedev %mklibname %name -d
 %define lib_name_orig libcoin
@@ -12,9 +12,8 @@ Name: %{name}
 Version: %{version}
 Release: %{release}
 Source0: http://ftp.coin3d.org/coin/src/all/Coin-%{version}.tar.gz
-License: GPL
+License: GPLv2
 Group: System/Libraries
-BuildRoot: %{_tmppath}/%{name}-buildroot
 URL: http://www.coin3d.org/
 BuildRequires: libx11-devel
 BuildRequires: mesagl-devel
@@ -50,29 +49,34 @@ applications which will use Coin.
 
 %prep
 %setup -q -n Coin-%{version}
+for file in AUTHORS THANKS
+do
+iconv -f ISO-8859-1 -t UTF-8 "$file" > "${file}.new"
+mv "${file}.new" "$file"
+done
 
 %build
 %configure2_5x
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 %makeinstall_std
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files -n %{libname}
 %defattr(-,root,root,0755)
-%{_libdir}/*.so.*
+%{_libdir}/*.so.%{major}*
 
 %files -n %{libnamedev}
 %defattr(-,root,root,0755)
 %doc README FAQ AUTHORS NEWS RELNOTES THANKS
 %{_bindir}/coin-config
 %{_libdir}/*.so
-%{_libdir}/*.la
+%{_libdir}/pkgconfig/Coin.pc
 %{_includedir}/*
 %{_datadir}/Coin
 %_datadir/aclocal
 %{_mandir}/man1/*
+%if %{mdkver} < 201200
+%{_libdir}/*.la
+%endif
