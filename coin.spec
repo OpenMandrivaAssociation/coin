@@ -15,8 +15,9 @@ Source0: http://ftp.coin3d.org/coin/src/all/Coin-%{version}.tar.gz
 License: GPLv2
 Group: System/Libraries
 URL: http://www.coin3d.org/
-BuildRequires: libx11-devel
-BuildRequires: mesagl-devel
+BuildRequires: pkgconfig(x11)
+BuildRequires: pkgconfig(gl)
+Patch0:	coin-3.1.3-missing-header.patch
 
 %description 
 Coin is an implementation of the Open Inventor API, fully backwards
@@ -54,13 +55,13 @@ do
 iconv -f ISO-8859-1 -t UTF-8 "$file" > "${file}.new"
 mv "${file}.new" "$file"
 done
+%patch0 -p1
 
 %build
 %configure2_5x
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 
 %files -n %{libname}
@@ -77,6 +78,3 @@ rm -rf %{buildroot}
 %{_datadir}/Coin
 %_datadir/aclocal
 %{_mandir}/man1/*
-%if %{mdkver} < 201200
-%{_libdir}/*.la
-%endif

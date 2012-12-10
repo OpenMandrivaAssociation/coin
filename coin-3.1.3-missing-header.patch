@@ -1,0 +1,13 @@
+diff --git a/include/Inventor/SbBasic.h b/include/Inventor/SbBasic.h
+index d038bb1..6f3d773 100644
+--- a/include/Inventor/SbBasic.h
++++ b/include/Inventor/SbBasic.h
+@@ -23,7 +23,7 @@
+  *  http://www.sim.no/  sales@sim.no  coin-support@coin3d.org
+  *
+ \**************************************************************************/
+-
++#include <Inventor/C/errors/debugerror.h>
+ #include <Inventor/C/basic.h>
+ 
+ /* ********************************************************************** */
