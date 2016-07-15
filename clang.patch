@@ -1,0 +1,38 @@
+# HG changeset patch
+# User TheHubbit <TheHubbit@nospam.org>
+# Date 1401831686 -7200
+#      Tue Jun 03 23:41:26 2014 +0200
+# Branch clangmathundef
+# Node ID e0801647b1839a40df71e2d4d37f77eae2730bca
+# Parent  9c57e0b2170bab50e7e89a5b214249fdf95746a0
+Don?t undefine float-versions of math functions when clang compiler is used (OS X).
+
+diff -r 9c57e0b2170b -r e0801647b183 include/Inventor/C/base/math-undefs.h
+--- a/include/Inventor/C/base/math-undefs.h	Tue Jun 03 22:53:41 2014 +0200
++++ b/include/Inventor/C/base/math-undefs.h	Tue Jun 03 23:41:26 2014 +0200
+@@ -47,8 +47,15 @@
+   This block was originally part of Inventor/C/basic.h, but since the
+   #undef's were mangled by the config.status process, it did not really
+   work as intended.  20070518 larsa
++
++  cmath from "The LLVM Compiler Infrastructure" uses float-versions of the
++  math functions below. Therefore don't undefine them when __clang__ is
++  defined.
++ 
+ */
+ 
++#ifndef __clang__
++
+ #undef cosf
+ #define cosf(x) NO_SINGLEPREC /* whatever that'll give us a compile error... */
+ #undef sinf
+@@ -68,6 +75,9 @@
+ #undef atan2f
+ #define atan2f(x) NO_SINGLEPREC
+ 
++#endif // !__clang__
++
++
+ /* *********************************************************************** */
+ 
+ #endif // !COIN_MATH_UNDEFS_H

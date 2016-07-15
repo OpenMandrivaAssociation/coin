@@ -2,11 +2,13 @@
 %define libname %mklibname %name %major
 %define libnamedev %mklibname %name -d
 %define lib_name_orig libcoin
+%define _disable_rebuild_configure %nil
+%define	debug_package %nil
 
 Summary:	Implementation of the Open Inventor API
 Name:		coin
 Version:	3.1.3
-Release:	3
+Release:	4
 Source0:	http://ftp.coin3d.org/coin/src/all/Coin-%{version}.tar.gz
 License:	GPLv2
 Group:		System/Libraries
@@ -14,6 +16,8 @@ URL:		http://www.coin3d.org/
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(gl)
 Patch0:		coin-3.1.3-missing-header.patch
+Patch1:		clang.patch
+Patch2:		coin-3.1.3-freetype251.patch
 
 %description 
 Coin is an implementation of the Open Inventor API, fully backwards
@@ -51,10 +55,23 @@ do
 iconv -f ISO-8859-1 -t UTF-8 "$file" > "${file}.new"
 mv "${file}.new" "$file"
 done
-%patch0 -p1
+%apply_patches
+
+# fix prefix in coin-config
+sed -i '/^prefix/c prefix="/usr/"' bin/coin-config
+
+# fix compilation
+sed -i '/^#include "fonts\/freetype.h"$/i #include <cstdlib>\n#include <cmath>' src/fonts/freetype.cpp
+
+# fix http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=667139
+sed -i '/^#include <Inventor\/C\/basic.h>$/i #include <Inventor/C/errors/debugerror.h>' include/Inventor/SbBasic.h
 
 %build
-%configure
+CFLAGS="%{optflags} -DCOIN_INTERNAL"
+CXXFLAGS="%{optflags} -DCOIN_INTERNAL"
+export CC=gcc
+export CXX=g++
+%configure --enable-system-expat
 %make
 
 %install
