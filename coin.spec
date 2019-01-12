@@ -8,7 +8,7 @@
 Summary:	Implementation of the Open Inventor API
 Name:		coin
 Version:	3.1.3
-Release:	5
+Release:	6
 Source0:	http://ftp.coin3d.org/coin/src/all/Coin-%{version}.tar.gz
 License:	GPLv2
 Group:		System/Libraries
@@ -18,6 +18,7 @@ BuildRequires:	pkgconfig(gl)
 Patch0:		coin-3.1.3-missing-header.patch
 Patch1:		clang.patch
 Patch2:		coin-3.1.3-freetype251.patch
+Patch3:		0012-memhandler-initialization.patch
 
 %description 
 Coin is an implementation of the Open Inventor API, fully backwards
