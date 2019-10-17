@@ -1,0 +1,29 @@
+From d37794f45a5d98fe45c85f5f3da740fbbb16134e Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Ralf=20Cors=C3=A9pius?= <corsepiu@corsepiu.home>
+Date: Fri, 4 May 2012 13:08:54 +0200
+Subject: [PATCH 01/10] simage soname
+
+---
+ src/glue/simage_wrapper.cpp | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+diff --git a/src/glue/simage_wrapper.cpp b/src/glue/simage_wrapper.cpp
+index 542ceda..c59e3f9 100644
+--- a/src/glue/simage_wrapper.cpp
++++ b/src/glue/simage_wrapper.cpp
+@@ -285,11 +285,7 @@ simage_wrapper(void)
+          Autoconf check? 20000930 mortene. */
+       const char * possiblelibnames[] = {
+         NULL, /* is set below */
+-        "simage", "libsimage", "libsimage.so",
+-        /* Mach dynamic library name */
+-        "libsimage.dylib",
+-        /* MSWindows DLL names for the simage library */
+-        simage_dll_name,
++        @LIBSIMAGE_SONAME@,
+         NULL
+       };
+ 
+-- 
+1.8.1.4
+

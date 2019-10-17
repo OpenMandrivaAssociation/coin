@@ -1,0 +1,25 @@
+From 0b8e50261ab03fc6bdee3fc62d08e40fdb136191 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Ralf=20Cors=C3=A9pius?= <corsepiu@corsepiu.home>
+Date: Thu, 18 Apr 2013 16:20:03 +0200
+Subject: [PATCH 09/10] Convert to utf-8.
+
+---
+ examples/bindings/glxiv.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/examples/bindings/glxiv.cpp b/examples/bindings/glxiv.cpp
+index e3a2e43..a24175a 100644
+--- a/examples/bindings/glxiv.cpp
++++ b/examples/bindings/glxiv.cpp
+@@ -206,7 +206,7 @@ event_loop(WindowData * win)
+       }
+     }
+     
+-    // FIXME: should do this properly แ la SoXt, to avoid using ~100%
++    // FIXME: should do this properly รก la SoXt, to avoid using ~100%
+     // CPU. 20031113 mortene.
+     SoDB::getSensorManager()->processTimerQueue();
+     SoDB::getSensorManager()->processDelayQueue(TRUE);
+-- 
+1.8.1.4
+

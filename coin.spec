@@ -5,20 +5,37 @@
 %define _disable_rebuild_configure %nil
 %define	debug_package %nil
 
+%global libopenal_SONAME libopenal.so.1
+%global libsimage_SONAME libsimage.so.2
+
+
 Summary:	Implementation of the Open Inventor API
 Name:		coin
 Version:	3.1.3
-Release:	6
+Release:	7
 Source0:	http://ftp.coin3d.org/coin/src/all/Coin-%{version}.tar.gz
 License:	GPLv2
 Group:		System/Libraries
 URL:		http://www.coin3d.org/
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(gl)
-Patch0:		coin-3.1.3-missing-header.patch
-Patch1:		clang.patch
-Patch2:		coin-3.1.3-freetype251.patch
-Patch3:		0012-memhandler-initialization.patch
+BuildRequires:	boost-devel
+Patch0:		clang.patch
+Patch1:		0001-simage-soname.patch
+Patch2:		0002-openal-soname.patch
+Patch3:		0003-man3.patch
+Patch4:		0004-doxygen.patch
+Patch5:		0005-gcc-4.7.patch
+Patch6:		0006-inttypes.patch
+Patch7:		0007-Convert-to-utf-8.patch
+Patch8:		0008-Convert-to-utf-8.patch
+Patch9:		0009-Convert-to-utf-8.patch
+Patch10:	0010-GCC-4.8.0-fixes.patch
+Patch11:	0011-Fix-SoCamera-manpage.patch
+Patch12:	0012-memhandler-initialization.patch
+Patch13:	0013-Use-NULL-instead-of-0.patch
+Patch14:	patch-hg-11603.patch
+
 
 %description 
 Coin is an implementation of the Open Inventor API, fully backwards
@@ -51,11 +68,11 @@ applications which will use Coin.
 
 %prep
 %setup -q -n Coin-%{version}
-for file in AUTHORS THANKS
-do
-iconv -f ISO-8859-1 -t UTF-8 "$file" > "${file}.new"
-mv "${file}.new" "$file"
-done
+#for file in AUTHORS THANKS
+#do
+#iconv -f ISO-8859-1 -t UTF-8 "$file" > "${file}.new"
+#mv "${file}.new" "$file"
+#done
 %apply_patches
 
 # fix prefix in coin-config
@@ -67,11 +84,21 @@ sed -i '/^#include "fonts\/freetype.h"$/i #include <cstdlib>\n#include <cmath>' 
 # fix http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=667139
 sed -i '/^#include <Inventor\/C\/basic.h>$/i #include <Inventor/C/errors/debugerror.h>' include/Inventor/SbBasic.h
 
+find . \( -name '*.h' -o -name '*.cpp' -o -name '*.c' \) -a -executable -exec chmod -x {} \;
+
+sed -i -e 's,@LIBSIMAGE_SONAME@,"%{libsimage_SONAME}",' \
+  src/glue/simage_wrapper.cpp
+sed -i -e 's,@LIBOPENAL_SONAME@,"%{libopenal_SONAME}",' \
+  src/glue/openal_wrapper.cpp
+
+# get rid of bundled boost headers
+rm -rf include/boost
+
 %build
 CFLAGS="%{optflags} -DCOIN_INTERNAL"
 CXXFLAGS="%{optflags} -DCOIN_INTERNAL"
-export CC=gcc
-export CXX=g++
+#export CC=gcc
+#export CXX=g++
 %configure --enable-system-expat
 %make
 

@@ -1,0 +1,296 @@
+From 50b8acd29d65596fea12e3497ac485d6fdb85420 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Ralf=20Cors=C3=A9pius?= <corsepiu@corsepiu.home>
+Date: Fri, 4 May 2012 13:10:08 +0200
+Subject: [PATCH 04/10] doxygen
+
+---
+ docs/doxygen/footer.html                        |  2 +-
+ src/actions/SoGLRenderAction.cpp                |  4 ++--
+ src/base/SbDPViewVolume.cpp                     |  2 +-
+ src/base/SbViewVolume.cpp                       |  2 +-
+ src/collision/SoIntersectionDetectionAction.cpp |  2 +-
+ src/elements/SoElement.cpp                      | 12 ++++++------
+ src/fields/SoMField.cpp                         |  2 +-
+ src/fields/SoSFImage.cpp                        |  2 +-
+ src/fields/SoSFImage3.cpp                       |  2 +-
+ src/fields/SoSField.cpp                         |  2 +-
+ src/geo/SoGeoOrigin.cpp                         |  6 +++---
+ src/misc/SoOffscreenRenderer.cpp                |  2 +-
+ src/misc/SoPath.cpp                             |  6 +++---
+ src/nodekits/SoBaseKit.cpp                      |  8 ++++----
+ src/nodes/SoNurbsProfile.cpp                    |  6 +++---
+ 15 files changed, 30 insertions(+), 30 deletions(-)
+
+diff --git a/docs/doxygen/footer.html b/docs/doxygen/footer.html
+index feaccd5..2bb04ac 100644
+--- a/docs/doxygen/footer.html
++++ b/docs/doxygen/footer.html
+@@ -1,6 +1,6 @@
+ <hr noshade>
+ <p align="right">Copyright &copy 1998-2010 by <a href="http://http://www.kongsberg.com/kogt">Kongsberg Oil & Gas Technologies</a>. All rights reserved.</p>
+ <address style="align: right;"><small>
+-Generated on $datetime for $projectname by <a href="http://www.doxygen.org/">Doxygen</a> $doxygenversion.</small></address>
++Generated on $date for $projectname by <a href="http://www.doxygen.org/">Doxygen</a> $doxygenversion.</small></address>
+ </body>
+ </html>
+diff --git a/src/actions/SoGLRenderAction.cpp b/src/actions/SoGLRenderAction.cpp
+index e89629b..550fe52 100644
+--- a/src/actions/SoGLRenderAction.cpp
++++ b/src/actions/SoGLRenderAction.cpp
+@@ -400,7 +400,7 @@
+   A more detailed presentation of the algorithm is written by Cass
+   Everitt at NVIDIA;
+ 
+-  "Interactive Order-Independent Transparency"
++  \"Interactive Order-Independent Transparency\"
+   http:://developer.nvidia.com/object/order_independent_transparency.html
+ 
+   \since Coin 2.2
+@@ -877,7 +877,7 @@ SoGLRenderAction::getTransparencyType(void) const
+       glEnable(GL_LINE_SMOOTH);
+   \endverbatim
+ 
+-  ...before rendering the scene.
++  \.\.\.before rendering the scene.
+ 
+   This is a simple (and computationally non-intensive) way of doing
+   anti-aliasing.
+diff --git a/src/base/SbDPViewVolume.cpp b/src/base/SbDPViewVolume.cpp
+index 46ead07..0b4af71 100644
+--- a/src/base/SbDPViewVolume.cpp
++++ b/src/base/SbDPViewVolume.cpp
+@@ -640,7 +640,7 @@ SbDPViewVolume::projectBox(const SbBox3f& box) const
+   view = view.narrow(0.25, 0.5, 0.75, 1.0);
+   \endcode
+ 
+-  ..will give a view volume with corner points <25, 75> and <50, 100>.
++  \.\.will give a view volume with corner points <25, 75> and <50, 100>.
+ 
+   \sa scale(), scaleWidth(), scaleHeight()
+  */
+diff --git a/src/base/SbViewVolume.cpp b/src/base/SbViewVolume.cpp
+index 958b3e8..4c35c9b 100644
+--- a/src/base/SbViewVolume.cpp
++++ b/src/base/SbViewVolume.cpp
+@@ -379,7 +379,7 @@ SbViewVolume::projectBox(const SbBox3f& box) const
+   view = view.narrow(0.25, 0.5, 0.75, 1.0);
+   \endcode
+ 
+-  ..will give a view volume with corner points <25, 75> and <50, 100>.
++  \.\.will give a view volume with corner points <25, 75> and <50, 100>.
+ 
+   \sa scale(), scaleWidth(), scaleHeight()
+  */
+diff --git a/src/collision/SoIntersectionDetectionAction.cpp b/src/collision/SoIntersectionDetectionAction.cpp
+index 5635c9c..54a229f 100644
+--- a/src/collision/SoIntersectionDetectionAction.cpp
++++ b/src/collision/SoIntersectionDetectionAction.cpp
+@@ -66,7 +66,7 @@
+     SoInteraction::init();
+ 
+     if (argc != 2) {
+-      (void)fprintf(stderr, "\n\tUsage: testapp <filename.iv>\n\n");
++      (void)fprintf(stderr, "\n\\tUsage: testapp <filename.iv>\n\n");
+       exit(1);
+     }
+ 
+diff --git a/src/elements/SoElement.cpp b/src/elements/SoElement.cpp
+index afa752d..d83a322 100644
+--- a/src/elements/SoElement.cpp
++++ b/src/elements/SoElement.cpp
+@@ -218,13 +218,13 @@
+   void
+   usage(const char * appname)
+   {
+-    (void)fprintf(stderr, "\n\tUsage: %s <modelfile.iv>\n\n", appname);
++    (void)fprintf(stderr, "\n\\tUsage: %s <modelfile.iv>\n\n", appname);
+     (void)fprintf(stderr,
+-                  "\tLists all texture filenames in the model file,\n"
+-                  "\tand on which shape nodes they are used.\n\n"
+-                  "\tThe purpose of this example utility is simply to\n"
+-                  "\tshow how to create and use an extension element for\n"
+-                  "\tscene graph traversal.\n\n");
++                  "\\tLists all texture filenames in the model file,\n"
++                  "\\tand on which shape nodes they are used.\n\n"
++                  "\\tThe purpose of this example utility is simply to\n"
++                  "\\tshow how to create and use an extension element for\n"
++                  "\\tscene graph traversal.\n\n");
+   }
+ 
+   int
+diff --git a/src/fields/SoMField.cpp b/src/fields/SoMField.cpp
+index 305f7e3..32760f9 100644
+--- a/src/fields/SoMField.cpp
++++ b/src/fields/SoMField.cpp
+@@ -161,7 +161,7 @@
+     }
+   \endcode
+ 
+-  ..like this, for instance, a Coordinate3 node providing 6 vertex
++  \.\.like this, for instance, a Coordinate3 node providing 6 vertex
+   coordinates in the form of SbVec3f values in its "point" field for
+   e.g. a faceset, lineset or pointset:
+ 
+diff --git a/src/fields/SoSFImage.cpp b/src/fields/SoSFImage.cpp
+index 8e50a89..663d7c3 100644
+--- a/src/fields/SoSFImage.cpp
++++ b/src/fields/SoSFImage.cpp
+@@ -50,7 +50,7 @@
+   FIELDNAME X Y C 0xRRGGBBAA 0xRRGGBBAA ...
+   \endcode
+ 
+-  "X" and "Y" are the image dimensions along the given axes, "C" is
++  \"X\" and \"Y\" are the image dimensions along the given axes, "C" is
+   the number of components in the image. The number of 0xRRGGBBAA
+   pixel color specifications needs to equal the exact number of
+   pixels, which of course is given by X*Y. Each part of the pixel
+diff --git a/src/fields/SoSFImage3.cpp b/src/fields/SoSFImage3.cpp
+index 60d0d83..03a07d7 100644
+--- a/src/fields/SoSFImage3.cpp
++++ b/src/fields/SoSFImage3.cpp
+@@ -50,7 +50,7 @@
+   FIELDNAME X Y Z C 0xRRGGBBAA 0xRRGGBBAA ...
+   \endcode
+ 
+-  "X", "Y" and "Z" are the image dimensions along the given axes, "C"
++  \"X\", \"Y\" and \"Z\" are the image dimensions along the given axes, "C"
+   is the number of components in the image. The number of 0xRRGGBBAA
+   pixel color specifications needs to equal the exact number of
+   pixels, which is X*Y*Z. Each part of the pixel color value is in the
+diff --git a/src/fields/SoSField.cpp b/src/fields/SoSField.cpp
+index a707d35..661f63b 100644
+--- a/src/fields/SoSField.cpp
++++ b/src/fields/SoSField.cpp
+@@ -59,7 +59,7 @@
+     }
+   \endcode
+ 
+-  ..like this, for instance, a SpotLight node from a scene
++  \.\.like this, for instance, a SpotLight node from a scene
+   graph which will be default \e off when read back from file:
+ 
+   \code
+diff --git a/src/geo/SoGeoOrigin.cpp b/src/geo/SoGeoOrigin.cpp
+index 6fb8f99..81b504d 100644
+--- a/src/geo/SoGeoOrigin.cpp
++++ b/src/geo/SoGeoOrigin.cpp
+@@ -220,12 +220,12 @@
+   Used to specify a spatial reference frame. Coin currently supports three different
+   systems. Support for more systems might be added in the future.
+ 
+-  \li "GD" - The Geodetic system (latitude/longitude).  
++  \li \"GD\" - The Geodetic system (latitude/longitude).  
+ 
+-  \li "UTM" - Universal Transverse Mercator coordinate system. The
++  \li \"UTM\" - Universal Transverse Mercator coordinate system. The
+   second string should be the zone, encoded as "Z<n>".
+   
+-  \li "GC" - Earth-fixed Geocentric with respect to the WGS84 ellipsoid.
++  \li \"GC\" - Earth-fixed Geocentric with respect to the WGS84 ellipsoid.
+ 
+   The "GD" and "UTM" systems can, for future support, have an ellipsoid
+   specification. The default is "WE" which is the WGS84 ellipsoid, the only
+diff --git a/src/misc/SoOffscreenRenderer.cpp b/src/misc/SoOffscreenRenderer.cpp
+index ae28f2d..40f545d 100644
+--- a/src/misc/SoOffscreenRenderer.cpp
++++ b/src/misc/SoOffscreenRenderer.cpp
+@@ -123,7 +123,7 @@
+   <li>dump rendered scene to file</li>
+   </ul>
+ 
+-  ..then you use some external tool or library to construct the movie
++  \.\.then you use some external tool or library to construct the movie
+   file, for instance in MPEG format, from the set of files dumped to
+   disk from the iterative process above.
+ 
+diff --git a/src/misc/SoPath.cpp b/src/misc/SoPath.cpp
+index a6ed112..79c3c36 100644
+--- a/src/misc/SoPath.cpp
++++ b/src/misc/SoPath.cpp
+@@ -909,7 +909,7 @@ SoPath::replaceIndex(SoNode * const parent, const int index,
+     }
+   \endcode
+ 
+-  ..if we now do:
++  \.\.if we now do:
+ 
+   \code
+     SoSeparator * root = new SoSeparator;
+@@ -919,7 +919,7 @@ SoPath::replaceIndex(SoNode * const parent, const int index,
+     wa.apply(root);
+   \endcode
+ 
+-  ..we would get the scene graph exported like this:
++  \.\.we would get the scene graph exported like this:
+ 
+   \code
+     Separator {
+@@ -937,7 +937,7 @@ SoPath::replaceIndex(SoNode * const parent, const int index,
+     }
+   \endcode
+ 
+-  ..and as you can see, \e both the Cone and the Cube nodes has
++  \.\.and as you can see, \e both the Cone and the Cube nodes has
+   vanished, as they was not important for the part per se, and not
+   written as part of it.
+ 
+diff --git a/src/nodekits/SoBaseKit.cpp b/src/nodekits/SoBaseKit.cpp
+index 57205d1..6686f9e 100644
+--- a/src/nodekits/SoBaseKit.cpp
++++ b/src/nodekits/SoBaseKit.cpp
+@@ -183,7 +183,7 @@
+    shapekit->set("material", "diffuseColor 1 0 0");
+   \endcode
+ 
+-  ..while doing it without shape kits amounts to this:
++  \.\.while doing it without shape kits amounts to this:
+ 
+   \code
+   SoSeparator * root = new SoSeparator;
+@@ -193,7 +193,7 @@
+   root->addChild(new SoCube);
+   \endcode
+ 
+-  ..so even for this miniscule mock-up example, you save on code
++  \.\.so even for this miniscule mock-up example, you save on code
+   verbosity and complexity.
+ 
+ 
+@@ -293,8 +293,8 @@
+     SO_KIT_ADD_FIELD(active, (TRUE));
+     SO_KIT_ADD_FIELD(projectedSize, (5.0f));
+ 
+-    SO_KIT_ADD_CATALOG_ENTRY(topSeparator, SoSeparator, FALSE, this, \x0, FALSE);
+-    SO_KIT_ADD_CATALOG_ABSTRACT_ENTRY(shape, SoNode, SoCube, TRUE, topSeparator, \x0, TRUE);
++    SO_KIT_ADD_CATALOG_ENTRY(topSeparator, SoSeparator, FALSE, this, 0, FALSE);
++    SO_KIT_ADD_CATALOG_ABSTRACT_ENTRY(shape, SoNode, SoCube, TRUE, topSeparator, 0, TRUE);
+     SO_KIT_ADD_CATALOG_ENTRY(scale, SoScale, FALSE, topSeparator, shape, FALSE);
+ 
+     SO_KIT_INIT_INSTANCE();
+diff --git a/src/nodes/SoNurbsProfile.cpp b/src/nodes/SoNurbsProfile.cpp
+index 4916462..697ee78 100644
+--- a/src/nodes/SoNurbsProfile.cpp
++++ b/src/nodes/SoNurbsProfile.cpp
+@@ -93,7 +93,7 @@
+   }
+   \endcode
+ 
+-  .. with... 
++  \.\. with\.\.\. 
+ 
+   \code
+   ProfileCoordinate2 {
+@@ -120,8 +120,8 @@
+   for detailed information, refer to the specialized literature on the
+   topic (for example "An Introduction to NURBS: With Historical
+   Perspective" by David F. Rogers). A basic overview of curve and
+-  surface rendering using NURBS can also be found in chapter 8 of "The
+-  Inventor Mentor".
++  surface rendering using NURBS can also be found in chapter 8 of \"The
++  Inventor Mentor\".
+ 
+   <b>FILE FORMAT/DEFAULTS:</b>
+   \code
+-- 
+1.8.1.4
+
