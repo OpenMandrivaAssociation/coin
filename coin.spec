@@ -68,11 +68,11 @@ applications which will use Coin.
 
 %prep
 %setup -q -n Coin-%{version}
-#for file in AUTHORS THANKS
-#do
-#iconv -f ISO-8859-1 -t UTF-8 "$file" > "${file}.new"
-#mv "${file}.new" "$file"
-#done
+for file in AUTHORS THANKS
+do
+iconv -f ISO-8859-1 -t UTF-8 "$file" > "${file}.new"
+mv "${file}.new" "$file"
+done
 %apply_patches
 
 # fix prefix in coin-config
@@ -97,8 +97,6 @@ rm -rf include/boost
 %build
 CFLAGS="%{optflags} -DCOIN_INTERNAL"
 CXXFLAGS="%{optflags} -DCOIN_INTERNAL"
-#export CC=gcc
-#export CXX=g++
 %configure --enable-system-expat
 %make
 
