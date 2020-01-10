@@ -73,7 +73,7 @@ do
 iconv -f ISO-8859-1 -t UTF-8 "$file" > "${file}.new"
 mv "${file}.new" "$file"
 done
-%apply_patches
+%autopatch -p1
 
 # fix prefix in coin-config
 sed -i '/^prefix/c prefix="/usr/"' bin/coin-config
