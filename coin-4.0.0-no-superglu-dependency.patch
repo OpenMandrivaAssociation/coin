@@ -1,0 +1,14 @@
+diff -up coin/src/coin-config.cmake.in.omv~ coin/src/coin-config.cmake.in
+--- coin/src/coin-config.cmake.in.omv~	2022-01-12 02:25:50.901880077 +0100
++++ coin/src/coin-config.cmake.in	2022-01-12 02:26:02.682929282 +0100
+@@ -99,10 +99,6 @@ if(NOT COIN_BUILD_SHARED_LIBS)
+ 	if(_EXPAT_FOUND)
+ 		find_dependency(EXPAT)
+ 	endif()
+-	set(_superglu_FOUND @superglu_FOUND@)
+-	if(_superglu_FOUND)
+-		find_dependency(superglu)
+-	endif()
+ 	set(_ZLIB_FOUND @ZLIB_FOUND@)
+ 	if(_ZLIB_FOUND)
+ 		find_dependency(ZLIB)

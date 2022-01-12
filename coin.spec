@@ -17,6 +17,8 @@ BuildRequires:	pkgconfig(glu)
 BuildRequires:	boost-devel
 BuildRequires:	cmake ninja
 Patch0:		coin-fix-underlinking.patch
+# Avoid cmake(superglu) dependency in -devel
+Patch1:		coin-4.0.0-no-superglu-dependency.patch
 
 %description 
 Coin is an implementation of the Open Inventor API, fully backwards
