@@ -13,6 +13,7 @@ Group:		System/Libraries
 URL:		http://coin3d.github.io/
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(gl)
+BuildRequires:	pkgconfig(glu)
 BuildRequires:	boost-devel
 BuildRequires:	cmake ninja
 Patch0:		coin-fix-underlinking.patch
