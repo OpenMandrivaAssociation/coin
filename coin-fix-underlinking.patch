@@ -1,0 +1,23 @@
+diff -up coin/src/CMakeLists.txt.1~ coin/src/CMakeLists.txt
+--- coin/src/CMakeLists.txt.1~	2019-12-23 20:47:44.000000000 +0100
++++ coin/src/CMakeLists.txt	2022-01-12 00:44:09.269916457 +0100
+@@ -256,7 +256,7 @@ elseif(APPLE)
+ endif()
+ 
+ target_include_directories(${PROJECT_NAME} PRIVATE ${COIN_TARGET_INCLUDE_DIRECTORIES})
+-target_link_libraries(${PROJECT_NAME} PRIVATE ${COIN_TARGET_LINK_LIBRARIES})
++target_link_libraries(${PROJECT_NAME} PRIVATE ${COIN_TARGET_LINK_LIBRARIES} X11)
+ if(NOT COIN_BUILD_MAC_FRAMEWORK)
+   target_include_directories(${PROJECT_NAME} INTERFACE $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+ endif()
+diff -up coin/src/glue/CMakeLists.txt.1~ coin/src/glue/CMakeLists.txt
+--- coin/src/glue/CMakeLists.txt.1~	2019-12-23 20:47:45.000000000 +0100
++++ coin/src/glue/CMakeLists.txt	2022-01-12 00:41:37.261353134 +0100
+@@ -59,6 +59,7 @@ else()
+ 		target_include_directories(glue PRIVATE $<TARGET_PROPERTY:simage::simage,INTERFACE_INCLUDE_DIRECTORIES>)
+ 	endif()
+ endif()
++target_link_libraries(glue X11)
+ 
+ # define documentation
+ foreach(SRCFILE ${COIN_GLUE_FILES})
