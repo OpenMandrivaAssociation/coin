@@ -79,7 +79,7 @@ Summary:	HTML developer documentation for Coin
 %{summary}.
 
 %files doc
-%{_docdir}/Coin4/html/
+%{_docdir}/Coin/html/
 
 #--------------------------------------------------------------------
 
