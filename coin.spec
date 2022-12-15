@@ -6,7 +6,7 @@
 Summary:	Implementation of the Open Inventor API
 Name:		coin
 Version:	4.0.0
-Release:	1
+Release:	2
 Source0:	https://github.com/coin3d/coin/releases/download/Coin-%{version}/coin-%{version}-src.tar.gz
 License:	GPLv2
 Group:		System/Libraries
@@ -16,6 +16,7 @@ BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glu)
 BuildRequires:	boost-devel
 BuildRequires:	cmake ninja
+BuildRequires:	doxygen
 Patch0:		coin-fix-underlinking.patch
 # Avoid cmake(superglu) dependency in -devel
 Patch1:		coin-4.0.0-no-superglu-dependency.patch
@@ -28,6 +29,8 @@ features.
 Coin is portable across Win32, Linux, SGI IRIX, Mac OS X, HP-UX, Sun
 Solaris, IBM AIX, and other platforms.
 
+#--------------------------------------------------------------------
+
 %package -n %{libname}
 Summary:	Main library for Coin
 Group:		System/Libraries
@@ -36,6 +39,12 @@ Provides:	%{name} = %{version}-%{release}
 %description -n %{libname}
 This package contains the library needed to run programs dynamically
 linked with Coin.
+
+%files -n %{libname}
+%{_libdir}/*.so.%{major}*
+%{_libdir}/*.so.%{version}
+
+#--------------------------------------------------------------------
 
 %package -n %{libnamedev}
 Summary:	Headers for developing programs that will use Coin
@@ -50,20 +59,6 @@ Obsoletes:	%{_lib}coin60-devel
 This package contains the headers that programmers will need to develop
 applications which will use Coin.
 
-%prep
-%autosetup -p1 -n coin
-%cmake -G Ninja
-
-%build
-%ninja_build -C build
-
-%install
-%ninja_install -C build
-
-%files -n %{libname}
-%{_libdir}/*.so.%{major}*
-%{_libdir}/*.so.%{version}
-
 %files -n %{libnamedev}
 %doc README FAQ AUTHORS NEWS RELNOTES THANKS
 %{_bindir}/coin-config
@@ -73,3 +68,34 @@ applications which will use Coin.
 %{_datadir}/Coin
 %{_libdir}/cmake/Coin-4.0.0
 %{_infodir}/Coin4
+
+#--------------------------------------------------------------------
+
+# (mandian) NOTE: coin-doc package is required by FreCAD
+%package doc
+Summary:	HTML developer documentation for Coin
+
+%description doc
+%{summary}.
+
+%files doc
+%{_docdir}/Coin4/html/
+
+#--------------------------------------------------------------------
+
+%prep
+%autosetup -p1 -n coin
+
+# Update doxygen configuration
+doxygen -u docs/coin.doxygen.in
+
+%cmake \
+	-DCOIN_BUILD_DOCUMENTATION=TRUE \
+	-G Ninja
+
+%build
+%ninja_build -C build
+
+%install
+%ninja_install -C build
+
