@@ -1,13 +1,14 @@
 %define major 80
-%define libname %mklibname %name %major
+%define oldlibname %mklibname %name 80
+%define libname %mklibname %name
 %define libnamedev %mklibname %name -d
 %define lib_name_orig libcoin
 
 Summary:	Implementation of the Open Inventor API
 Name:		coin
-Version:	4.0.0
-Release:	2
-Source0:	https://github.com/coin3d/coin/releases/download/Coin-%{version}/coin-%{version}-src.tar.gz
+Version:	4.0.1
+Release:	1
+Source0:	https://github.com/coin3d/coin/releases/download/v%{version}/coin-%{version}-src.tar.gz
 License:	GPLv2
 Group:		System/Libraries
 URL:		http://coin3d.github.io/
@@ -35,6 +36,7 @@ Solaris, IBM AIX, and other platforms.
 Summary:	Main library for Coin
 Group:		System/Libraries
 Provides:	%{name} = %{version}-%{release}
+%rename %{oldlibname}
 
 %description -n %{libname}
 This package contains the library needed to run programs dynamically
@@ -42,7 +44,6 @@ linked with Coin.
 
 %files -n %{libname}
 %{_libdir}/*.so.%{major}*
-%{_libdir}/*.so.%{version}
 
 #--------------------------------------------------------------------
 
@@ -60,14 +61,13 @@ This package contains the headers that programmers will need to develop
 applications which will use Coin.
 
 %files -n %{libnamedev}
-%doc README FAQ AUTHORS NEWS RELNOTES THANKS
+%doc FAQ AUTHORS NEWS RELNOTES THANKS
 %{_bindir}/coin-config
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/Coin.pc
 %{_includedir}/*
 %{_datadir}/Coin
-%{_libdir}/cmake/Coin-4.0.0
-%{_infodir}/Coin4
+%{_libdir}/cmake/Coin-%{version}
 
 #--------------------------------------------------------------------
 
@@ -98,4 +98,3 @@ doxygen -u docs/coin.doxygen.in
 
 %install
 %ninja_install -C build
-
