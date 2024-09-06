@@ -6,7 +6,7 @@
 
 Summary:	Implementation of the Open Inventor API
 Name:		coin
-Version:	4.0.2
+Version:	4.0.3
 Release:	1
 Source0:	https://github.com/coin3d/coin/releases/download/v%{version}/coin-%{version}-src.tar.gz
 License:	GPLv2
