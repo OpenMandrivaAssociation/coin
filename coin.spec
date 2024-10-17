@@ -11,7 +11,7 @@ Release:	1
 Source0:	https://github.com/coin3d/coin/releases/download/v%{version}/coin-%{version}-src.tar.gz
 License:	GPLv2
 Group:		System/Libraries
-URL:		http://coin3d.github.io/
+URL:		https://coin3d.github.io/
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glu)
