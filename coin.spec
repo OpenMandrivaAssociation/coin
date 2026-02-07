@@ -6,9 +6,9 @@
 
 Summary:	Implementation of the Open Inventor API
 Name:		coin
-Version:	4.0.3
+Version:	4.0.7
 Release:	1
-Source0:	https://github.com/coin3d/coin/releases/download/v%{version}/coin-%{version}-src.tar.gz
+Source0:	https://github.com/coin3d/coin/releases/download/v%{version}/coin-%{version}.tar.gz
 License:	GPLv2
 Group:		System/Libraries
 URL:		https://coin3d.github.io/
@@ -84,7 +84,7 @@ Summary:	HTML developer documentation for Coin
 #--------------------------------------------------------------------
 
 %prep
-%autosetup -p1 -n coin
+%autosetup -p1 -n %{name}-%{version}
 
 # Update doxygen configuration
 doxygen -u docs/coin.doxygen.in
